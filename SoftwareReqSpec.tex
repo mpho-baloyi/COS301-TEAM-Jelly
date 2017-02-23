@@ -92,8 +92,14 @@ The mobile device used by the user should be able to communicate with the Wi-Fi 
 Because this application will be mainly mobile based, it should use as little as possible primary memory. It must in no way overload the mobile device's functional capacity. The installation size must be small, to not clutter up user space on the user's device. Application download should also preferably take place over the UP WiFi network to alleviate user data costs.\\
 The entire system will also make use of an external database in order to save and track user progress and various other events, this way the user need only retrieve the data from the external database rather than waste the memory space of the mobile device.
 \subsubsection{Operations}
+The NavUP system will support several forms of user modes. Firstly the NavUP system will have a registered user mode and a visitor mode, the difference comes in the use of the external database since the visitor does not necessarily need to save locations or track participation for weekly/monthly activities.\\
+The second main mode of operations is the admin mode. The admin mode will have the abilities to make required changes to the system and add push notifications for other users. 
 \subsubsection{Site Adaptation Requirements}
+Since the NavUP system will make use of an external database in order to store map and event data, gathered by users or added through an admin system, there should be a required "server room". The "server room" does not necessarily have to be an entire room, but simply a way for data to be stored externally and manipulated via an admin system.
 \subsection{Product Functions}
+The NavUP system will have a core-navigation system, which will allow the application to track the users' current location on the Hatfield campus. Additionally the core-navigation will allow the user to retrieve the shortest route from their current location to their desired destination.\\
+The NavUP system will also contain an activities system, here the users will be given certain goals to complete in order to gain points and progress, users who do the best might then be rewarded for their participation in the given activity.\\
+Admins and sponsors will also be able to push notifications directly to users based on data and criteria gathered through the use of the NavUP system. The notifications could simply be advertisements, but might also be paired with special events in the activity system to notify people when said event is active.
 \subsection{User Characteristics}
 \subsection{Constraints}
 \subsection{Assumption and Dependencies}
