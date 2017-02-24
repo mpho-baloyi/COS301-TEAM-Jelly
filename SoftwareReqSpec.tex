@@ -6,6 +6,8 @@
 \usepackage{booktabs}
 \usepackage{verbatim}
 \usepackage{makecell}
+\usepackage[section]{placeins}
+\usepackage{float}
 
 \begin{document}
 \begin{titlepage}
@@ -54,20 +56,21 @@ Idrian  \textsc{van der Westhuizen}\\
 
 \newpage
 \section{Introduction}
-This section provides an outline of this Software Requirements Specification. The purpose for this document and the scope it covers is described and a definition list is provided for abbreviations.
+This section provides an outline of this Software Requirements Specification(SRS). The purpose for this document and the scope it covers is described and a definition list is provided for abbreviations.
 \subsection{Purpose}
-The purpose of the software requirements specification (SRS) document is to highlight the requirements and functionality of the NavUP system. The SRS describes the overall design of the system and its interfaces from the various interfaces and how they are linked with one another.\\
-The documents contains details of what the product must be able to do and describes the various users that will make use of the NavUP system so that appropriate use interfaces can be designed. The details about the products assumptions and its dependencies are also contained within the document along with the constraints of the system, this is to allow for a better understanding of what must be done and what can be done within the system, along with what must be tried to avoid.\\
-Further specific requirements are detailed within the document and makes mention of functional requirements and other design constraints to give a finer detail of what is expected in the NavUP system. The SRS documents is intended for the clientèle that will oversee the creation of the NavUP system.
+The purpose of this Software Requirements Specification(SRS) is to describe the requirements and specifications of the NavUP system,a mobile navigation application for the University of Pretoria, Hatfield campus. It contains details about the functional features of the NavUP system,along with the interface details,design constraints and related considerations such as software quality attributes. \\
+Further specific requirements are detailed within the document and makes mention of functional requirements and other constraints to give a finer detail of what is expected in the NavUP system. This SRS documents is intended for the clientèle that will oversee the development of the NavUP system.
 \subsection{Scope}
-The 'NavUp' system will be used to navigate around the University of Pretoria Hatfield campus. The software will include a map of the campus that distinguishes between food courts, lecture halls, administrative buildings and other locations of interests.\\
-The system will allow a user to identify his current location on campus. The user will then be able to pick a destination on campus and the system will determine an ideal route and provide directions. Heatmaps will reveal congested areas and show where large numbers of students are moving in close proximity. This will allow a user to use a route that has less pedestrian traffic. Furthermore, a user will be allowed to save locations and search for destinations.\\
-The system will include game-like functionality that will award badges to users who have achieved certain distance milestones, and to those who travel to a new area for the first time.\\
-The software will run on any Android or iOS smartphone or tablet. The system will mainly use WiFi connectivity to determine users' locations.
+The 'NavUP' system will be used to navigate around the University of Pretoria Hatfield campus. The software will include a map of the campus that distinguishes between food courts, lecture halls, administrative buildings and other locations of interests.\\
+The system will allow a user to identify his current location on campus and search for a destination on campus. The system will then determine the ideal route to the destination based on restrictions specified by the user such as avoiding pedestrian traffic
+and provide directions. Heat maps will then be used to reveal congested areas and show where large number of students are moving in close proximity. The system will also provide users with information about activities and events that are taking place on campus as well information about points of interests.  
+The system will also include game-like functionality that will award badges to users who have achieved certain distance milestones, and to those who travel to a new area for the first time.\\
+The software will run on any Android or iOS smart phone or tablet. The system will mainly use WiFi connectivity to determine users' locations.
 \subsection{Definitions, Acronyms and Abbreviations}
 SRS:	Software Specifications Requirement\\
 UP:		University of Pretoria\\
-GPS:	Global Positioning System
+GPS:	Global Positioning System \\
+Admin:  Administration
 \subsection{References}
  Kung, D. (2014). Object-oriented software engineering. 1st ed. McGraw-Hill, p.98.
 \subsection{Overview}
@@ -95,11 +98,54 @@ The entire system will also make use of an external database in order to save an
 \subsubsection{Site Adaptation Requirements}
 \subsection{Product Functions}
 \subsection{User Characteristics}
+The following is a list of the four types of users for the NavUP system and the different ways in which
+they interact with the system.
+\begin{itemize} 
+	\item[$\bullet$] Students
+	\begin{itemize}  
+	\item This group of users will use the front-end of the system, which consists of a mobile application which will run
+	on various mobile devices.
+	\item Students will be provided with ability to view their current location, search and locate venues and navigate to       			destinations without the need to log in.
+	\item To enjoy the benefits of saving locations, receive personalized information such as activities and events based on 		       points of interest, students need to be logged in.
+	 \end{itemize}
+	\item[$\bullet$] University Of Pretoria Staff 
+	\begin{itemize}
+	\item This group of users will use both the front-end and back-end of the system,they will use the back-end 
+	to add view and change user details. 
+	\item The front-end may be used the same way it is used by students. 
+	\end{itemize}  
+	\item[$\bullet$] Guests  
+	\begin{itemize}  
+	\item Guest users will be able to view their location, search venues, view events and navigate to destinations. 
+	\end{itemize}
+	\item[$\bullet$] Administrators of the NavUP system 
+	\begin{itemize}  
+	\item This group of users will use the back-end part of the system. 
+	\item They will be able to add, remove and manage the following: users, activities and event notifications.
+	\item They are responsible for the running of the system. 
+	\end{itemize}
+\end{itemize}
+
 \subsection{Constraints}
+The mobile application is constrained by the system interface to the WiFi hardware within the mobile phone. Since there are multiple WiFi manufacturers, the interface will most likely not be the same for every one of them. Also, there may be a difference in the performance and specifications of the hardware. \\
+The Internet connection is also a constraint for the application. Since the application fetches data from the database over the Internet, it is crucial that there is an Internet connection for the application to function. 
+Both the back-end and the mobile application will be constrained by the capacity of the database. 
+
 \subsection{Assumption and Dependencies}
+An assumption about the product is that it will always be used on mobile phones that have built-in WiFi hardware and have enough performance to run the application in a working and consistent manner.
+Another assumption is that the WiFi components in all mobile phones work in the same way. If the phones have different interfaces to the WiFi, the application need to be specifically adjusted to each interface and that would mean the integration with the WiFi would have different requirements than what is stated in this specification. 
+For the application to launch and run it will depend on a compatible operating system and version of the mobile phone.
 
 \section{Specific Requirements}
 \subsection{External Interface Requirements}
+\subsubsection{User Interface}
+The mobile application will interface with the supported input and output features of the host's operating system. Inputs include text that the user will enter for login or searching a venue. Outputs include the type of fonts to display text or graphics to show images or draw the map.
+\subsubsection{Hardware Interfaces}
+Since neither the mobile application nor the web portal have any designated hardware, it does not have any direct hardware interfaces. The WiFi software in the mobile phone manages the built-in WiFi and the hardware connection to the database server is managed by the underlying operating system on the mobile phone and the web server. 
+\subsubsection{Software Interfaces}
+The mobile application communicates with the WiFi software in order to get signal strength information from multiple WiFi access points to determine (using triangulation) where the user is located. The communication software between the database and mobile application consists of operation concerning creating, reading, removing and modifying the data.
+\subsubsection{Communication Interfaces}
+The communication between the different parts of the system is important since they depend on each other. However, in what way the communication is achieved is not important for the system and is therefore handled by the underlying operating systems for both the mobile application and the back-end of the system.
 \subsection{Functional Requirements}
 \subsubsection{1-Admin system}
 \paragraph{1-1}
@@ -124,6 +170,18 @@ Postconditions:
 \begin{itemize}
 	\item[$\bullet$] Changes made to event notifications
 \end{itemize}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{UseCaseDiagrams/AdminUCD.JPG}
+\caption{Admin System use case diagram}
+\label{fig:Admin Use Case Diagram}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ActorDiagrams/AdminAD.JPG}
+\caption{Admin System Actor Diagram}
+\label{fig:Admin Actor Diagram}
+\end{figure}
+
+
 \subsubsection{2-Account management}
 \paragraph{2-1}
 The account management system will allow a registered user (staff member and student) to login to the system.\\
@@ -166,13 +224,26 @@ Postconditions:
 \begin{itemize}
 	\item[$\bullet$] Changes made to account management system
 \end{itemize}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{UseCaseDiagrams/AccManagementUCD.JPG}
+\caption{Account Management use case diagram}
+\label{fig:Account Management Use Case Diagram}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ActorDiagrams/AccManagementAD.JPG}
+\caption{Account Management Actor Diagram}
+\label{fig:Account Management Actor Diagram}
+\end{figure}
+
+
 \subsubsection{3-Core-Navigation system}
+
 \paragraph{3-1}
 The core navigation system will allow a user to view his/her current location.\\
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
@@ -183,7 +254,7 @@ The core navigation system will allow a user to save his/her current location de
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 	\item[$\bullet$] Must view current location
 \end{itemize}
 Postconditions:
@@ -195,19 +266,32 @@ The core navigation system will allow a user to enter a destination and get dire
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
 	\item[$\bullet$] User sees optimal route and heat map
 \end{itemize}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{UseCaseDiagrams/CoreNavUCD.JPG}
+\caption{Core Navigation use case diagram}
+\label{fig:Core Navigation Use Case Diagram}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ActorDiagrams/CoreNavAD.JPG}
+\caption{Core Navigation Actor Diagram}
+\label{fig:Core Navigation Actor Diagram}
+\end{figure}
+
+
 \subsubsection{4-Activity management}
+
 \paragraph{4-1}
 The activity management system will allow a user to manage current activities.\\
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
@@ -218,7 +302,7 @@ The activity management system will allow a user to add an activity to an activi
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
@@ -229,7 +313,7 @@ The activity management system will allow a user to remove activities from an ac
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
@@ -240,7 +324,7 @@ The activity management system will allow a user to view the heat map of current
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
@@ -251,13 +335,26 @@ The activity management system will update a user on any relevant activity infor
 Preconditions:
 \begin{itemize}
 	\item[$\bullet$] Must be registered and logged in
-	\item[$\bullet$] Must be on campus and connected to wifi network
+	\item[$\bullet$] Must be on campus and connected to WiFi network
 \end{itemize}
 Postconditions:
 \begin{itemize}
 	\item[$\bullet$] User receives notification
 \end{itemize}
-\subsubsection{5-Push-notification}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{UseCaseDiagrams/ActManagementUCD.JPG}
+\caption{Activity management use case diagram}
+\label{fig:Activity management Use Case Diagram}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ActorDiagrams/ActManagementAD.JPG}
+\caption{Activity Management System Actor Diagram}
+\label{fig:Activity Management System Actor Diagram}
+\end{figure}
+
+
+\subsubsection{5-Notification}
+
 \paragraph{5-1}
 The notification system will allow an administrator to create a notification.\\
 Preconditions:
@@ -291,6 +388,61 @@ Postconditions:
 \begin{itemize}
 	\item[$\bullet$] Relevant users received push notification
 \end{itemize}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{UseCaseDiagrams/NotificationUCD.JPG}
+\caption{Notification use case diagram}
+\label{fig:Notification Use Case Diagram}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ActorDiagrams/NotificationAD.JPG}
+\caption{Notification Actor Diagram}
+\label{fig:Notification Actor Diagram}
+\end{figure}
+
+\subsubsection{Traceability Matrix}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Traceability/Traceability.png}
+\caption{Traceability Matrix}
+\label{fig:Traceability Matrix}
+\end{figure}
+Use cases
+\begin{itemize}
+\item 1.1 Create User
+\item 1.2 Edit User Information
+\item 1.3 Remove User
+\item 1.4 Generate Active Users Report
+\end{itemize}
+
+\begin{itemize}
+\item 2.1 Login
+\item 2.2 Modify user details
+\item 2.3 Login as guest 
+\item 2.4 Make system changes 
+\end{itemize}
+
+
+\begin{itemize}
+\item 3.1 View Current Location
+\item 3.2 Save location
+\item 3.3 Find Destination 
+\item 3.4 Get Route
+\item 3.5 Check heat map (Determine Pedestrian Traffic)
+\end{itemize}
+
+\begin{itemize}
+\item 4.1 Manage Current Activities
+\item 4.2 Create Activities
+\item 4.3 Remove Activities
+\item 4.4 Update User Information
+\end{itemize}
+
+\begin{itemize}
+\item 5.1 Create Notification
+\item 5.2 Remove Notification
+\item 5.3 Push Notification
+\end{itemize}
+
+
 \subsection{Performance Requirements}
 \subsection{Design Constraints}
 \subsection{Software System Attributes}
